@@ -15,7 +15,7 @@ export const debug = (namespace?: string) => (...rest: any[]): void =>
 
   if (isBrowser)
   {
-    showLog(localStorage.getItem("debug"))
+    showLog(process.env.NODE_ENV !== "production" )
     &&
     console.log(
       namespace && `%c${namespace}`, `color: rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`,
@@ -24,7 +24,7 @@ export const debug = (namespace?: string) => (...rest: any[]): void =>
   }
   else
   {
-    showLog(process.env.DEBUG)
+    showLog(process.env.NODE_ENV !== "production" )
     &&
     console.log(
       namespace && couleur.bold(couleur.rgb(rgb[0], rgb[1], rgb[2])(namespace)),
